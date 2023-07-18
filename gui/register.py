@@ -1,0 +1,83 @@
+import tkinter as tk
+import customtkinter as ctk
+from PIL import ImageTk, Image
+import mysql.connector
+from tkinter import messagebox
+from .home2 import Home2
+
+
+class Register(ctk.CTkToplevel):
+    def __init__(self):
+        super().__init__()
+        self.geometry("600x440")
+        self.title('register')
+
+        # Set appearance mode and color theme
+        ctk.set_appearance_mode("dark")
+        ctk.set_default_color_theme("green")
+        #img1 = ctk.CTkImage("/pattern.png")
+        #self.background = ctk.CTkLabel(master=self, image=img1)
+
+        # # Set the background image
+        img1 = ImageTk.PhotoImage(Image.open(r"C:\Users\Administrator\Desktop\xrt\alpha\pattern.png"))
+        self.background = ctk.CTkLabel(master=self, image=img1)
+        self.background.pack()
+
+        # Create the register form frame
+        self.register_frame = ctk.CTkFrame(master=self.background, width=320, height=360, corner_radius=15)
+        self.register_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+        # Add the form elements
+        self.title_label = ctk.CTkLabel(master=self.register_frame, text="New Create Account", font=('Century Gothic', 20))
+        self.title_label.place(x=50, y=45)
+
+        self.email_entry = ctk.CTkEntry(master=self.register_frame, width=220, placeholder_text='Username')
+        self.email_entry.place(x=50, y=110)
+
+        self.password_entry = ctk.CTkEntry(master=self.register_frame, width=220, placeholder_text='Password', show="*")
+        self.password_entry.place(x=50, y=165)
+
+        self.register_button = ctk.CTkButton(master=self.register_frame, width=220, text="register", command=self.register, corner_radius=6)
+        self.register_button.place(x=50, y=240)
+
+        self.register_label = ctk.CTkLabel(master=self.register_frame, text="already have an account?", font=('Century Gothic', 12))
+        self.register_label.place(x=50, y=310)
+        self.register_label.bind("<Button-1>", self.login)
+
+    def register(self):
+            email = self.email_entry.get()
+            password = self.password_entry.get()
+
+            mydb = mysql.connector.connect(
+                host="127.0.0.1",
+                user="root",
+                password="12345678",
+                database="login"
+            )
+
+            mycursor = mydb.cursor()
+            mycursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+            result = mycursor.fetchone()
+
+            if result:
+                messagebox.showerror("Error", "Email already exists")
+            else:
+                mycursor.execute("INSERT INTO users (email, password) VALUES (%s, %s)", (email, password))
+                mydb.commit()
+                messagebox.showinfo("Success", "Registration successful")
+                self.destroy()
+                home = Home2()
+                home.mainloop()
+
+    def login(self, event):
+        # Add the link to the login module here
+        self.destroy()
+        login = App()
+        login.mainloop()
+        
+        return print("gone")
+
+
+#if True:
+#    r = Register()
+#    r.mainloop()
