@@ -3,12 +3,13 @@
 Commerce Site Scraper is a cross-platform desktop application that allows users to gather data from various shopping sites and presents it in a user-friendly interface using customtkinter on the desktop.
 
 ### Features
-Scrapes product data from multiple shopping sites
-Customtkinter desktop interface for easy navigation
-Search functionality to find specific products
-Filter options based on price range
-Sorting options to arrange products by price
-User-friendly and intuitive design
+
+- Scrapes product data from multiple shopping sites
+- Customtkinter desktop interface for easy navigation
+- Search functionality to find specific products
+- Filter options based on price range
+- Sorting options to arrange products by price
+- User-friendly and intuitive design
 
 ### Installation
 Clone this repository to your local machine using:
@@ -24,13 +25,18 @@ Install the required dependencies using pip:
 
 Copy code
 
-```pip install -r requirements.txt```
+```
+pip install -r requirements.txt
+```
 
 #### Usage
 Run the application by executing:
 
 Copy code
-```python main.py```
+```
+python main.py
+```
+
 The desktop application will open with a search bar and filter options.
 
 Enter the desired product name in the search bar and click the "Search" button.
