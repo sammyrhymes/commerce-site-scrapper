@@ -108,7 +108,9 @@ git commit -m "Add new feature: Description of the feature"
 Push your changes to your forked repository on GitHub:
 
 Copy code
-```git push origin feature/new-feature```
+```
+git push origin feature/new-feature
+```
 
 ###### Create a Pull Request
 
