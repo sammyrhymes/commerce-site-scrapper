@@ -75,7 +75,7 @@ Handle potential errors gracefully, such as invalid URLs, connection issues, or 
 ### How to Contribute
 Thank you for your interest in contributing to Commerce-Site-Scraper! Follow the steps below to get started:
 
-####### Fork the Repository
+###### Fork the Repository
 
 Click on the "Fork" button at the top right corner of this repository to create your own copy.
 Clone the Repository
