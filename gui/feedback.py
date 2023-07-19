@@ -3,8 +3,9 @@ import customtkinter as ctk
 from PIL import ImageTk, Image
 import mysql.connector
 import sys
-sys.path.append(r"C:\Users\FUJITSU\Desktop\kusoma\alpha")
-from gui import *
+sys.path.append(r"C:\Users\Administrator\Desktop\xrt\alpha\gui")
+# from gui import *
+from user import User
 
 
 
@@ -40,11 +41,11 @@ class Feedback(ctk.CTkToplevel):
         self.submit_button = ctk.CTkButton(master=self.feedback_frame, height=40, width=220, text="Submit", corner_radius=6, command=self.submit_feedback)
         self.submit_button.place(x=210, y=470)
 
-        #self.submit_button = ctk.CTkButton(master=self.feedback_frame, height=20, width=80, text="home", corner_radius=6, command=self.home)
-        #self.submit_button.place(x=445, y=47)
+        # self.submit_button = ctk.CTkButton(master=self.feedback_frame, height=20, width=80, text="home", corner_radius=6, command=self.home)
+        # self.submit_button.place(x=445, y=47)
 
-        #self.submit_button = ctk.CTkButton(master=self.feedback_frame, height=20, width=80, text="user", corner_radius=6, command=self.user)
-        #self.submit_button.place(x=360, y=47)
+        self.submit_button = ctk.CTkButton(master=self.feedback_frame, height=20, width=80, text="user", corner_radius=6, command=self.user)
+        self.submit_button.place(x=360, y=47)
 
     def submit_feedback(self):
         email = self.email_entry.get()
@@ -78,6 +79,8 @@ class Feedback(ctk.CTkToplevel):
         finally:
             cursor.close()
             mydb.close()
+        self.email_entry.delete(0, tk.END)
+        self.feedback_entry.delete(0, tk.END)
     def user(self):
         self.destroy()
         user = User()

@@ -3,13 +3,15 @@ import customtkinter as ctk
 from PIL import ImageTk, Image
 import mysql.connector
 import sys
-sys.path.append(r"C:\Users\Administrator\Desktop\xrt\alpha")
+sys.path.append(r"C:\Users\Administrator\Desktop\xrt\alpha\gui")
 from gui import *
+import webbrowser
 
 
 
 
-class Home2(ctk.CTk):
+
+class Home2(ctk.CTkToplevel):
     def __init__(self):
         super().__init__()
         self.geometry("1024x800")
@@ -27,7 +29,7 @@ class Home2(ctk.CTk):
         self.background = ctk.CTkLabel(master=self, image=img1)
         self.background.pack()
 
-        # Create the body frame
+        # Create the body self.user_frame
         self.user_frame = ctk.CTkFrame(master=self.background, width=690, height=600, corner_radius=15)
         self.user_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
@@ -57,15 +59,22 @@ class Home2(ctk.CTk):
 
         self.maximum = ctk.CTkEntry(master=self.user_frame,height=40, width=40, placeholder_text='max')
         self.maximum.place(x=570, y=110)
+        img2=ctk.CTkImage(Image.open(r"C:\Users\Administrator\Desktop\xrt\alpha\resource\facebook.png").resize((20,20)))
+        img3=ctk.CTkImage(Image.open(r"C:\Users\Administrator\Desktop\xrt\alpha\resource\image.png").resize((20,20)))
+        button2= ctk.CTkButton(master=self.user_frame, text='facebook', image=img2, command=self.facebook, width=20, height=20, compound="left", fg_color='black', text_color='white', hover_color='#AFAFAF')
+        button2.place(x=590, y=5)
+
+        button3= ctk.CTkButton(master=self.user_frame,text='github', image=img3, command=self.github, width=20, height=20, compound="left", fg_color='black', text_color='white', hover_color='#AFAFAF')
+        button3.place(x=510, y=5)
 
         # def slider_event(value):
         #     print(value)
 
         # self.slider = ctk.CTkSlider(self.user_frame, from_=0, to=100, command=slider_event, height=20, width=100)
         # self.slider.place(x=170, y=110)
-        #self.user_button = ctk.CTkButton(master=self.user_frame, height=20, width=80,
+        # self.user_button = ctk.CTkButton(master=self.user_frame, height=20, width=80,
         #                                  text="user", corner_radius=6, command=self.user)
-        #self.user_button.place(x=480, y=47)
+        # self.user_button.place(x=480, y=47)
 
         #the back button
         '''
@@ -78,13 +87,19 @@ class Home2(ctk.CTk):
         self.results_label.place(x=100, y=255)
     def feed(self):
         # self.destroy()
-        self.destroy()
+        self.iconify()
         feed = Feedback()
         feed.mainloop()
     def user(self):
-        self.destroy()
+        self.iconify()
         user = User()
         user.mainloop()
+    def facebook(self):
+        url = "https://www.facebook.com/maxie.rimmes?mibextid=ZbWKwL"
+        webbrowser.open(url)
+    def github(self):
+        url = "https://github.com/sammyrhymes"
+        webbrowser.open(url)       
     def search(self):
         # Retrieve the search query from the entry field
         search_query = self.name_entry.get()
@@ -164,7 +179,7 @@ class Home2(ctk.CTk):
                     
             
 
-admin = Home2()
-admin.mainloop()
+# admin = Home2()
+# admin.mainloop()
 
 

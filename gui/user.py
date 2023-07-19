@@ -2,7 +2,10 @@ import mysql.connector
 import tkinter as tk
 import customtkinter as ctk
 from PIL import ImageTk, Image
-
+import sys
+from tkinter import messagebox
+# sys.path.append(r"C:\Users\Administrator\Desktop\xrt\alpha\gui")
+# from home2 import Home2
 
 class User(ctk.CTkToplevel):
     def __init__(self):
@@ -30,17 +33,22 @@ class User(ctk.CTkToplevel):
         self.firstname_entry.place(x=100, y=110)
 
         self.lastname_entry = ctk.CTkEntry(master=self.user_frame, height=40,width=440, placeholder_text='Last name')
-        self.lastname_entry.place(x=100, y=200)
+        self.lastname_entry.place(x=100, y=170)
+
+        self.email_entry = ctk.CTkEntry(master=self.user_frame, height=40,width=440, placeholder_text='email')
+        self.email_entry.place(x=100, y=230)
 
         self.dob_entry = ctk.CTkEntry(master=self.user_frame,height=40, width=440, placeholder_text='date of birth(DD/MM/YYYY)')
-        self.dob_entry.place(x=100, y=290)
+        self.dob_entry.place(x=100, y=300)
 
         self.password_entry = ctk.CTkEntry(master=self.user_frame, height=40,width=440, placeholder_text='update password')
-        self.password_entry.place(x=100, y=380)
+        self.password_entry.place(x=100, y=370)
 
         self.login_button = ctk.CTkButton(master=self.user_frame, height=40,width=220, text="Submit", corner_radius=6, command=self.update_fields)
-        self.login_button.place(x=210, y=470)
+        self.login_button.place(x=210, y=440)
 
+        # self.submit_button = ctk.CTkButton(master=self.user_frame, height=20, width=80, text="home", corner_radius=6, command=self.home)
+        # self.submit_button.place(x=360, y=47)
     def update_fields(self):
         # Establish connection to MySQL database
         mydb = mysql.connector.connect(
@@ -54,8 +62,8 @@ class User(ctk.CTkToplevel):
         mycursor = mydb.cursor()
 
         # Update the fields in the login_user table
-        sql = "UPDATE login_user SET firstname=%s, lastname=%s, dob=%s, password=%s WHERE id=%s"
-        val = (self.firstname_entry.get(), self.lastname_entry.get(), self.dob_entry.get(), self.password_entry.get(), 1) # assuming id of the logged in user is 1
+        sql = "UPDATE users SET first_name=%s, last_name=%s, dob=%s, password=%s WHERE email=%s"
+        val = (self.firstname_entry.get(), self.lastname_entry.get(), self.dob_entry.get(), self.password_entry.get(), self.email_entry.get()) # assuming id of the logged in user is 1
         mycursor.execute(sql, val)
 
         # Commit the changes to the database
@@ -69,8 +77,12 @@ class User(ctk.CTkToplevel):
         self.lastname_entry.delete(0, tk.END)
         self.dob_entry.delete(0, tk.END)
         self.password_entry.delete(0, tk.END)
+        messagebox.showinfo("Success", "successfully updated details!")
+    # def home():
+    #     self.destroy()
+    #     u = Home2()
+    #     u.mainloop()
 
-
-#if True:
+# if True:
 #    a = User()
 #    a.mainloop()
