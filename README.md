@@ -50,10 +50,14 @@ The results will be displayed on the customtkinter desktop interface, showing th
 Click on the product image or link to visit the shopping site for more details and make a purchase.
 
 Supported Shopping Sites so far
-- [Jumia](https://www.google.com)
-- [jiji](https://github.com)
+- [Jumia](https://www.jumia.co.ke/)
+- [jiji](https://jiji.co.ke/)
 
 ### backlog (incoming features)
+
+###### More Websites:
+As ther say the more the merrier, the target is to be able to get over 5 websites to be scraped
+
 ###### Website Selection: 
 Allow users to choose which shopping sites they want to scrape data from, providing a list of supported websites.
 
